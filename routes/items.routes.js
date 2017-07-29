@@ -10,12 +10,14 @@ var env = process.env.NODE_ENV || 'development';
 
 console.log("VI ER HER")
 
+/*
 if(env == "production"){
     console.log("VI ER HER 2")
     console.log(appDir)
     appDir = appDir + "/repo";
     console.log(appDir)
 }
+*/
 
 console.log("VI ER HER 3")
 
