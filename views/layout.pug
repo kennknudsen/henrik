@@ -2,6 +2,49 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+
+    meta(http-equiv="content-type" content="text/html; charset=UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="description" content="")
+    meta(name="keywords" content="")
+    meta(name="author" content="")
+
+    //FAVICON
+    //link(rel="shortcut icon" href="images/favicon.ico")
+
+    //BOOTSTRAP
+    link(rel="stylesheet" href="stylesheets/bootstrap.min.css")
+
+    //ICONS
+    link(rel="stylesheet" href="stylesheets/icons/fontawesome/css/style.css")
+    link(rel="stylesheet" href="stylesheets/icons/style.css")
+    link(rel="stylesheet" href="stylesheets/icons/icon2/style.css")
+    link(rel="stylesheet" href="javascripts/vendors/swipebox/css/swipebox.min.css")
+
+    //THEME / PLUGIN CSS
+    link(rel="stylesheet" href="javascripts/vendors/slick/slick.css")
+    link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/customer.css")
+
+    //FONT
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i")
+
+    //SKIN
+    link(rel="stylesheet" href="stylesheets/skin/default.css")
+
+    //ANGULAR MATERIAL
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.css")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+
+    // TABLES
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.css")
+
+    script(src="js/bundle.js", type="text/javascript")
+
+    block addScripts
+
+  body(ng-app="app")
     block content
+
+
+
