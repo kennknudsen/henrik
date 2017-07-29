@@ -1,0 +1,32 @@
+<md-card-actions layout="column" layout-align="center end" style="margin: 0;">
+    {{ next }}
+
+    <div flex layout="row" style="margin-right: 20px; width: 360px; text-align: center; position: relative;">
+        <div flex>
+            <p style="color: red; margin: 0;">Du har ikke tilføjet billeder</p>
+            <p style="color: red; margin: 0;">Du har ikke tilføjet dokumenter</p>
+        </div>
+        <div flex="0" layout="row" layout-align="center center" style="position: absolute; right: 55px; top: 3px; font-size: 23px;">
+            <!--<p style="color: red; margin: 0;">Begge dele hjælper dig til at få bedre tilbud</p>-->
+            <i class="material-icons" style="font-size: 40px; cursor: pointer;" ng-click="moreInfo($event)" >help_outline</i>
+        </div>
+    </div>
+    <div flex layout="row">
+        <md-button class="md-raised md-primary" ng-click="lastState()" ng-disabled="saving || !showBack"
+           style="margin: 20px; font-size: 25px;  padding: 10px 30px;">
+            <span ng-if="!saving">Tilbage</span>
+            <span ng-if="saving">Gemmer...</span>
+        </md-button>  <!--ui-sref="henrik.byId({ parentId: lastState })"-->
+        <md-button class="md-raised md-primary" ng-if="queue.length > currentState" ng-disabled="saving" ui-sref="app.byId({ projectId: projectId, itemId: next.id, grandParent: next.grandParent })"
+           style="margin: 20px; font-size: 25px;  padding: 10px 30px; line-height: 20px;">
+            <span ng-if="!saving">Fortsæt</span>
+            <span ng-if="!saving" style="font-size: 15px;"><br>Alligevel</span>
+            <span ng-if="saving">Gemmer...</span>
+        </md-button>
+        <md-button class="md-raised md-primary" ng-if="queue.length == currentState" ng-disabled="saving" ui-sref="app.sent()"
+                   style="margin: 20px; font-size: 25px;  padding: 10px 30px;">
+            <span ng-if="!saving">Afslut</span>
+            <span ng-if="saving">Gemmer...</span>
+        </md-button>
+    </div>
+</md-card-actions>

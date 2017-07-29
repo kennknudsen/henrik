@@ -1,0 +1,31 @@
+<div>
+    <div layout="row">
+        <md-input-container class="md-block" flex-gt-sm="">
+            <label>Adresse</label>
+            <input name="address"  ng-model="project.address.address.value" md-maxlength="60" required md-no-asterisk ng-focus="setFocus('address');">
+            <div ng-messages="newProjectForm.address.$error">
+                <div ng-message="required">Feltet skal udfyldes</div>
+                <div ng-message="md-maxlength">By skal være kortere end 60 tegn</div>
+            </div>
+        </md-input-container>
+    </div>
+    <div layout="row">
+        <md-input-container flex="50">
+            <label>Postnummer</label>
+            <input name="zip" ng-model="project.address.zip.value" md-maxlength="4" required md-no-asterisk ng-pattern="/^[0-9]{4}$/" ng-focus="setFocus('address');">
+            <div ng-messages="newProjectForm.zip.$error">
+                <div ng-message="required">Feltet skal udfyldes</div>
+                <div ng-message="md-maxlength">Postnummeret skal i formatet ex. 8600</div>
+                <div ng-message="md-maxlength">Postnummeret skal være kortere end 4 tegn</div>
+            </div>
+        </md-input-container>
+        <md-input-container flex="50">
+            <label>By</label>
+            <input name="city" ng-model="project.address.city.value" md-maxlength="60" required md-no-asterisk ng-focus="setFocus('address');">
+            <div ng-messages="newProjectForm.city.$error">
+                <div ng-message="required">Feltet skal udfyldes</div>
+                <div ng-message="md-maxlength">By skal være kortere end 60 tegn</div>
+            </div>
+        </md-input-container>
+    </div>
+</div>

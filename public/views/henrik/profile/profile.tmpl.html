@@ -1,0 +1,78 @@
+<section id=rooms" ng-controller="profileCtrl" ng-cloak>
+    <div class="title" layout="row" style="margin-top: 40px; margin-bottom: 30px;">
+        <div flex>
+            <h1 style="text-align: center; font-size: 60px;">Min Profil</h1>
+        </div>
+    </div>
+    <div layout="row">
+        <div flex="15" flex-offset="15">
+            <div style="background-color: #0049b0; height: 150px; width: 150px; border-radius: 50%; font-size: 80px; font-weigth: bold; color: #fff;" layout layout-align="center center">{{ user.getFirstName() + " " + user.getLastName() | initials }}</div>
+        </div>
+        <div flex="35">
+            <h1 style="margin-bottom: 30px;">Personlig information</h1>
+            <div layout="column">
+                <div flex>
+                    <h3 style="margin-bottom: 10px;">
+                        <span>Navn</span>
+                        <i class="material-icons" style="font-size: 20px; color: #0049b0; padding-left: 15px;" ng-click="editUser($event, 'user')" ng-controller="edit-user">mode_edit</i>
+                    </h3>
+                    {{ user.getFirstName() + " " + user.getLastName() }}
+                </div>
+                <div flex style="margin-top: 15px;">
+                    <h3 style="margin-bottom: 10px;">
+                        <span>Email</span>
+                        <i class="material-icons" style="font-size: 20px; color: #0049b0; padding-left: 15px;" ng-click="editUser($event, 'user')" ng-controller="edit-user">mode_edit</i>
+                    </h3>
+                    {{ user.getEmail() }}
+                </div>
+            </div>
+            <h1 style="margin-bottom: 30px; margin-top: 60px">Kommunikaion</h1>
+            <div layout="column">
+                <div flex>
+                    <h3 style="margin-bottom: 10px;">
+                        <span>Nyhedsbreve</span>
+                        <i class="material-icons" style="font-size: 20px; color: #0049b0; padding-left: 15px;" ng-click="editUser($event, 'communication')" ng-controller="edit-user">mode_edit</i>
+                    </h3>
+                    <div>
+                        Modtag nyhedsbreve
+                    </div>
+                </div>
+                <div flex style="margin-top: 15px;">
+                    <h3 style="margin-bottom: 10px;">
+                        <span>Systembeskeder</span>
+                        <i class="material-icons" style="font-size: 20px; color: #0049b0; padding-left: 15px;" ng-click="editUser($event, 'communication')" ng-controller="edit-user">mode_edit</i>
+                    </h3>
+                    <div>
+                        Modtag vigtige beskeder om vigtige systembegivenheder
+                    </div>
+                    <div>
+                        Modtag beskeder vedførernde mine projekter
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div flex="35">
+            <h1 style="margin-bottom: 30px;">Abonnement</h1>
+            <div layout="column">
+                <div flex>
+                    <h3 style="margin-bottom: 10px;">
+                        <span>Nuværende abonnement</span>
+                        <i class="material-icons" style="font-size: 20px; color: #0049b0; padding-left: 15px;" ng-click="editUser($event, 'subscription')" ng-controller="edit-user">mode_edit</i>
+                    </h3>
+                    <div>
+                        Betal per projekt
+                    </div>
+                </div>
+                <div flex style="margin-top: 15px;">
+                    <h3 style="margin-bottom: 10px;">
+                        <span>Automatisk opfølgning</span>
+                        <i class="material-icons" style="font-size: 20px; color: #0049b0; padding-left: 15px;" ng-click="editUser($event, 'subscription')" ng-controller="edit-user">mode_edit</i>
+                    </h3>
+                    <div>
+                       Ja
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

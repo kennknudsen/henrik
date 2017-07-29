@@ -1,0 +1,49 @@
+<div>
+    <style>
+        md-select-value {
+            color: #FFF !important;
+        }
+    </style>
+    <div layout="row">
+        <div flex style="border: 3px solid gray; background-color: gray; border-radius: 10px; padding: 10px; margin-right: 10px; margin-left: 10px;">
+            <h2 style="color: #FFF; text-align: center;">Efter forbrug</h2>
+            <div style="color: #fff; font-size: 60px; font-weight: 600; text-align: center; margin-top: 50px; line-height: 0.75;">50 kr.</div>
+            <div style="color: #fff; font-size: 15px; text-align: center;">Per modtaget projekt</div>
+            <button class="md-raised md-button md-ink-ripple" style="width: calc( 100% - 15px); margin-top: 184px;">VÆLG</button>
+        </div>
+        <div flex style="border: 3px solid gray; background: gray; border-radius: 10px; padding: 10px; color: #fff; margin-right: 10px; margin-left: 10px;">
+            <h2 style="color: #FFF;; text-align: center;">Klippekort</h2>
+            <div style="color: #fff; font-size: 60px; font-weight: 600; text-align: center; margin-top: 50px; line-height: 0.75;">39 kr.</div>
+            <div style="color: #fff; font-size: 15px; text-align: center;">Per projekt</div>
+            <div style="color: #fff; font-size: 15px; text-align: center; margin-top: 25px;">10 projekter<br>390 kr./i alt</div>
+            <md-input-container class="md-block" flex-gt-sm style="margin-top: 25px;">
+                <label>Ændre antal klip</label>
+                <md-select ng-model="user.state">
+                    <md-option value="1">10 projekter (39 kr./projekt)</md-option>
+                    <md-option value="2">25 projekter (34 kr./projekt)</md-option>
+                    <md-option value="4">50 projekter (29 kr./projekt)</md-option>
+                </md-select>
+            </md-input-container>
+            <button class="md-raised md-button md-ink-ripple" style="width: calc( 100% - 15px); margin-top: 40px;">VÆLG</button>
+        </div>
+        <div flex style="border: 3px solid gray; background-color: gray; border-radius: 10px; padding: 10px; margin-right: 10px; margin-left: 10px;">
+            <h2 style="color: #FFF; text-align: center;">Ubegrænset</h2>
+            <div style="color: #fff; font-size: 60px; font-weight: 600; text-align: center; margin-top: 50px; line-height: 0.75;">189 kr.</div>
+            <div style="color: #fff; font-size: 15px; text-align: center;">Per måned</div>
+            <div style="color: #fff; font-size: 15px; text-align: center; margin-top: 25px;">Afregnet per kvartal<br>567 kr./i alt</div>
+            <md-input-container class="md-block" flex-gt-sm style="margin-top: 25px;">
+                <label>Ændre længde</label>
+                <md-select ng-model="user.state">
+                    <md-option value="1">Afregnet per måned (199 kr./måned)</md-option>
+                    <md-option value="2">Afregnet per kvartal (189 kr./måned))</md-option>
+                    <md-option value="4">Afregnet per år (179 kr./måned)</md-option>
+                </md-select>
+            </md-input-container>
+            <button class="md-raised md-button md-ink-ripple" style="width: calc( 100% - 15px); margin-top: 40px;">VÆLG</button>
+        </div>
+    </div>
+
+    <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1" style="margin-top: 30px; margin-left: 10px;">
+        Foretag automatisk opfyldning (anbefales)
+    </md-checkbox>
+</div>

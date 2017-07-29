@@ -1,0 +1,8 @@
+<div style="padding-left: 50px; padding-right: 50px;">
+    <h1>{{ help.title }}</h1>
+
+    <p ng-if="help.text">{{ help.text }}</p>
+    <p ng-if="help.texts" ng-repeat="text in help.texts">
+        <span ng-class="{ bold: text.bold }">{{ text.t }}</span>
+    </p>
+</div>

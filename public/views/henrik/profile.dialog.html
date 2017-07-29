@@ -1,0 +1,45 @@
+<md-dialog aria-label="Nyt projekt">
+    <md-toolbar style="background-color: #0049b0;">
+        <div class="md-toolbar-tools">
+            <h2 style="color: white;">{{ header.title }}</h2>
+            <span flex  style="color: white;">{{ header.subtitle }}</span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <i class="material-icons" aria-label="Close dialog" style="color: #FFF; font-size: 25px; margin-top: 8px; vertical-align: middle; display: table-cell;">close</i>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <div layout="row" ng-if="type == 'user' || type == 'communication'">
+                <div flex="50" layout="column">
+                    <form name="profile_user" ng-cloak ng-if="type == 'user'">
+                        <input-name></input-name>
+                        <input-email></input-email>
+                    </form>
+                    <form name="profile_user" ng-cloak ng-if="type == 'communication'">
+                        <input-newsletter></input-newsletter>
+                        <input-system-msg></input-system-msg>
+                    </form>
+                </div>
+                <help-page flex="50" layout="column" help="help"></help-page>
+            </div>
+            <div layout="row">
+                <div flex="100" ng-if="type == 'subscription'">
+                    <form name="profile_user" ng-cloak>
+                        <input-subscription></input-subscription>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button ng-click="cancel()">
+            Annuller
+        </md-button>
+        <md-button ng-click="save('useful')">
+            Gem
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

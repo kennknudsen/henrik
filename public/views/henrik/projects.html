@@ -1,0 +1,95 @@
+<div ng-cloak ng-controller="projects">
+    <md-content class="md-padding" layout="column" style="background: #f5f5f5;">
+        <div ng-if="user.userRights == 2">
+            <!-- NEW -->
+            <h1 class="md-title">Du har modtaget svar på et projekt</h1>
+            <div layout="row">
+                <table>
+                    <tbody>
+                        <tr ng-repeat="project in projects | filter : { notViewed: true }">
+                            <td>
+                                {{ project.address.address + ", " + project.address.zip + " " + project.address.city + " (" + project.owner.firstName + " " + project.owner.lastName + ")" }}
+                            </td>
+                            <td style="padding-left: 30px;">
+                                <md-button class="md-primary" target="_blank"  ng-click="changeState('app.rooms', { projectId: project._id } )">Vis projekt</md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- NEW -->
+            <h1 class="md-title">Du er blevet tildelt et nyt projekt</h1>
+            <div layout="row">
+                <table>
+                    <tbody>
+                    <tr ng-repeat="project in projects | filter : { new: true }">
+                        <td>
+                            {{ project.address.address + ", " + project.address.zip + " " + project.address.city + " (" + project.owner.firstName + " " + project.owner.lastName + ")" }}
+                        </td>
+                        <td style="padding-left: 30px;">
+                            <md-button class="md-primary" ng-href="#" target="_blank">Vis projekt</md-button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--
+        <md-toolbar class="md-table-toolbar md-default" ng-hide="working.show" aria-hidden="false" style="">
+            <div class="md-toolbar-tools">
+                <h1 class="md-title">Igangværende projekter</h1>
+                <div flex="" class="flex"></div>
+                <md-button class="md-icon-button" ng-click="working.show = true" aria-label="filter_list">
+                    <i class="material-icons">search</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-toolbar class="md-table-toolbar md-default ng-hide" ng-show="working.show" aria-hidden="true" style="">
+            <div class="md-toolbar-tools">
+                <md-icon class="material-icons">search</md-icon>
+                <form flex="" name="filter.form">
+                    <input type="text" ng-model="working.filter.search" placeholder="Søg" aria-invalid="false" style="width: 100%; margin: 0; border: none; color: rgba(0, 0, 0, 0.87);">
+                </form>
+                <md-button class="md-icon-button" ng-click="working.show = false; working.filter.search=undefined" aria-label="filter_list">
+                    <i class="material-icons">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        -->
+        <!-- PROJECTS WORKING -->
+        <div layout="row" layout-padding layout-wrap layout-fill>
+            <div flex="20" layout="column" ng-repeat="project in projects | filter: working.filter.search | filter: { ended: '!true' } ">  <!--orderBy : 'new'-->
+                <md-card>
+                    <md-card-header>
+                        <md-card-avatar>
+                            <div style="background: #eee; height: 40px; width: 40px; border-radius: 50%;" layout="row" layout-align="center center">
+                                {{ project.owner.firstName + " " + project.owner.lastName | initials }}
+                            </div>
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">Ejer</span>
+                            <span class="md-subhead">{{ project.owner.firstName }} {{ project.owner.lastName }}</span><!-- MÅSKE HÅNDVÆRKERE ISTEDET -->
+                        </md-card-header-text>
+                        <div>
+                            <i class="material-icons" style="color: red;" ng-if="project.send === false">mail</i>
+                        </div>
+                    </md-card-header>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline" style="font-size: 20px; min-height: 64px;">{{ project.description }}</span>
+                            <span class="md-headline" style="font-size: 15px;">{{ project.address.address }}</span>
+                            <span class="md-headline" style="font-size: 15px;">{{ project.address.zip }} {{ project.address.city}}</span>
+
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="start center" style="margin: 0;">
+                        <md-card-icon-actions></md-card-icon-actions>
+                        <md-button ng-click="endProject()" ng-if="user.validateUserRights(2)">Afslut</md-button>
+                        <md-button ng-click="changeState('app.rooms', { projectId: project._id } )" class="md-primary" style="width: 100%; background: rgb(47, 55, 62); padding-top: 8px; padding-bottom: 8px; color: #FFF; font-weight: 900;">Vælg</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+    </md-content>
+</div>

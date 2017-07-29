@@ -1,0 +1,13 @@
+<md-card style="width: 100%;" ng-class="{ added: action.value }">
+    <md-card-title style="padding: 0;">
+        <md-card-title-text style="margin: 8px; padding-top: 4px;">
+            <span class="md-headline" ng-if="action.title">{{ action.title }}</span>
+            <span class="md-headline" ng-if="action.text">{{ action.text.option }}</span>
+        </md-card-title-text>
+        <md-card-actions layout="row" layout-align="end center" style="margin: 0;">
+            <md-button class="md-raised md-primary" ng-if="item" ng-click="action.value = !action.value; handleResponse( item, action )" style="background: #2f373e; padding-top: 8px; padding-bottom: 8px;">
+                <span style="font-weight: 900;">Vælg</span>
+            </md-button>
+        </md-card-actions>
+    </md-card-title>
+</md-card>

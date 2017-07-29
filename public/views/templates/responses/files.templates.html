@@ -1,0 +1,7 @@
+<div layout="column" flex ng-init="showFiles=false" ng-show="radio.images.length > 0">
+    <h5 flex>Dokumenter ( {{ radio.images.length }} ) - <a style="cursor: pointer;" ng-click="showFiles = !showFiles">vis</a></h5>
+    <div layout="row" layout-wrap layout-fill ng-cloak ng-show="showFiles" style="position: relative; left: -10px;">
+        <div layout-padding style="padding: 0 0 0 10px;" ng-repeat="img in radio.images track by $index" flex-gt-md="100" >Filnavn {{ $index }}.pdf </div>
+        <div style="height: 10px; width: 10px;"></div>
+    </div>
+</div>

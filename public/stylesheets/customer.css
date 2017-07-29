@@ -1,0 +1,365 @@
+/* WOKRING */
+.list li {
+    font-weight: 500;
+    font-size: 20px;
+    padding-left: 50px;
+    /*border: 1px solid #29d9c2;*/
+    margin-bottom: 18px;
+    /*background-color: #29d9c2;*/
+    text-align: center;
+    padding-right: 50px;
+    font-family: Droid serif;
+    color: #f5f5f5;
+    /*color: rgb(132, 132, 132);*/
+    /*border-radius: 50px;*/
+}
+/*
+.info-content2 .list li {
+    font-size: 20px;
+    background-color: #FFF;
+    color: rgb(132, 132, 132);
+    padding-left: 50px;
+    padding-right: 50px;
+}*/
+
+
+.info-content2 .btn.btn-primary {
+    background-color: rgb(255, 81, 0);
+    border-color: rgb(255, 81, 0);
+}
+
+.list li:last-of-type .spacer {
+    display: none;
+}
+
+
+
+
+
+
+    /* NOT SURE IF WORKING BELOW */
+
+
+
+
+/* GLOBAL */
+p{
+    font-family: 'Lato', sans-serif;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+/* DIALOG */
+md-dialog-actions {
+    padding: 0 !important;
+}
+
+md-dialog-actions button {
+    margin: 0 !important;
+    background: #2f373e !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    width: 100%;
+    color: #FFF !important;
+    font-weight: 900 !important;
+}
+
+
+
+
+
+/* BTN */
+.btn.md-button {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 11px 28px;
+    border: none;
+    border-radius: 30px;
+    font-family: Montserrat;
+}
+
+.btn.btn-secondary{
+    position: relative;
+    /*padding-right: 54px;*/
+    background-color: #01a8ec;
+    border: 1px solid #01a8ec;
+    color: #fff;
+}
+
+.btn.btn-secondary:hover {
+    background: #111;
+    border: 1px solid #111;
+}
+
+.negative,
+md-input-container .md-input.negative {
+    color: red;
+}
+
+.btn.md-button.right {
+    float: right;
+}
+
+.btn.md-button i {
+    top: 7px;
+    margin-left: 0;
+    position: absolute;
+}
+.btn.md-button.left span {
+    padding-left: 20px;
+}
+
+.btn.md-button.right span {
+    padding-right: 20px;
+}
+
+
+.btn.md-button.left i:nth-child(1)  {
+    left: 40px;
+}
+
+.btn.md-button.left i:nth-child(2)  {
+    left: 30px;
+}
+
+.btn.md-button.left i:nth-child(3)  {
+    left: 20px;
+}
+
+.btn.md-button.right i:nth-child(1)  {
+    right: 40px;
+}
+
+.btn.md-button.right i:nth-child(2)  {
+    right: 30px;
+}
+
+.btn.md-button.right i:nth-child(3)  {
+    right: 20px;
+}
+
+/* PUBLIC */
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+    background-color: #FFF;
+}
+
+.md-dialog-content{
+    width: 800px;
+}
+
+.overlay {
+    /* start, Grøn steg tværs gennem billed, slut
+    background: linear-gradient(141deg, #784aff 0%, #1fc8db 51%, #2cb5e8 75%);
+    background: linear-gradient(141deg, #2cb5e8 -10%, #1fc8db 25%, #784aff 140%);*/
+    background: linear-gradient(141deg, #00adff -10%, #00555f 25%, #7353d0 140%);
+    opacity: 0.75;
+}
+
+input {
+    color: #808080 !important;
+}
+
+::-webkit-input-placeholder {
+    color: #808080;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #808080;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    color: #808080;
+}
+
+:-ms-input-placeholder {
+    color: #808080;
+}
+
+.intro11 h3 {
+    font-size: 40px;
+}
+
+
+.intro11 h2 {
+    color: #FFF;
+    font-size: 50px;
+}
+
+
+/* BACK */
+
+
+
+/* CHECKBOXES */
+.checkboxdemoSelectAll .demo-legend {
+	color: #3F51B5; }
+.checkboxdemoSelectAll .demo-fieldset {
+	border-style: solid;
+	border-width: 1px;
+	height: 100%; }
+.checkboxdemoSelectAll .demo-select-all-checkboxes {
+	padding-left: 0; }
+
+.checkboxdemoSelectAll .demo-select-all-checkboxes span {
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    margin: 0;
+    letter-spacing: -1px;
+    font-size: 24px;
+}
+
+.demo-select-all-checkboxes.active span{
+    font-weight: 300;
+    color: #29d9c2;
+}
+
+/* MENU */
+
+
+/* MENU
+.fabSpeedDialdemoBasicUsage .text-capitalize {
+	text-transform: capitalize; }
+.fabSpeedDialdemoBasicUsage .md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
+	background-color: #000 !important; }
+.fabSpeedDialdemoBasicUsage p.note {
+	font-size: 1.2rem; }
+.fabSpeedDialdemoBasicUsage .lock-size {
+	min-width: 300px;
+	min-height: 300px;
+	width: 300px;
+	height: 300px;
+	margin-left: auto;
+	margin-right: auto; }
+	*/
+
+
+/* TIMELINE - ACTION SECTION */
+.timeline:before{
+    width: 0;
+}
+
+.timeline:after {
+    height: 0;
+    border: 0;
+}
+
+.timeline > li > .timeline-panel {
+    width: 100%;
+    border: 1px solid #29d9c2;
+}
+
+.timeline > li.timeline-inverted > .timeline-panel:after {
+    border: 0;
+}
+
+
+
+/* ROTED BORDER */
+
+
+.timeline > li.timeline-inverted > .timeline-panel:before {
+      border-right-width: 51px;
+      left: -51px;
+  }
+.timeline > li > .timeline-panel:before {
+    top: 50px;
+    right: -51px;
+    border-top: 51px solid transparent;
+    border-left: 51px solid #29d9c2;
+    border-bottom: 51px solid transparent;
+    border-right: 0 solid #29d9c2;
+ }
+
+.timeline > li.timeline-inverted > .timeline-panel:after {
+    border-right-width: 50px;
+    left: -50px;
+}
+.timeline > li > .timeline-panel:after {
+    top: 51px;
+    right: -50px;
+    border-top: 50px solid transparent;
+    border-left: 50px solid #fff;
+    border-bottom: 50px solid transparent;
+}
+
+/* ACTIONS POINTS - MENU */
+.menudemoMenuPositionModes .md-menu-demo {
+    padding: 24px; }
+.menudemoMenuPositionModes .menu-demo-container {
+    min-height: 200px; }
+
+
+
+/* INPUT */
+.inputdemoBasicUsage .md-datepicker-button {
+    width: 36px; }
+
+input, textarea {
+    font-family: 'Hind', sans-serif !important;
+}
+
+.inputdemoErrors .inputErrorsApp {
+    min-height: 48px; }
+.inputdemoErrors md-input-container > p {
+    font-size: 0.8em;
+    text-align: left;
+    width: 100%; }
+
+
+
+/* MENU */
+md-menu-content._md-menu-bar-menu.md-dense {
+    padding: 8px 0 !important;
+}
+
+md-menu-content.md-dense md-menu-item {
+    height: 48px !important;
+}
+
+md-menu-content._md-menu-bar-menu.md-dense .md-button,
+md-menu-item > md-menu {
+    height: 100% !important;
+}
+
+md-menu-item > md-menu button span {
+    font-size: 15px;
+}
+
+md-menu-content._md-menu-bar-menu.md-dense md-menu-divider {
+    margin: 4px 0 !important;
+}
+
+/* APP */
+.done.checked {
+    color: #79c471;
+}
+.ownlist.checked {
+    color: #01a8ec;
+}
+.important.checked {
+    color: #e20052;
+}
+
+
+/* TABS */
+md-tabs-wrapper {
+    display: none !important;
+    border: 0 !important;
+}
+
+md-tabs md-ink-bar {
+    display: none;
+}
+/* ER DENNE IKKE DOBBELT ? */
+.actions md-tabs-wrapper {
+    display: none;
+}
+
+
+
+

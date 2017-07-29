@@ -1,0 +1,21 @@
+<div style="padding: 20px;">
+    <style>
+        .alert {
+            color: red;
+            font-size: 100px;
+        }
+    </style>
+    <div ng-class="{ alert: !id_unique }">All ID's unique: {{ id_unique }}</div>
+    <div>Max ID: {{ id_max }}</div>
+    <div ng-repeat="room in rooms" style="margin-top: 50px;">
+        <b>Rum: {{ room.id }} - {{ room.title }}</b>
+        <build-tree parent="room.id"  items="items"></build-tree>
+    </div>
+</div>
+
+
+
+
+ListItems
+
+ID 2 er genbrug

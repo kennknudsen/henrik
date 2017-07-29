@@ -1,0 +1,121 @@
+<div ng-cloak ng-controller="haand-projects">
+    <md-content class="md-padding" layout="column">
+        <h1 class="md-title">Du har modtaget svar på et projekt</h1>
+        <div layout="row">
+            <div flex>
+                Vesterhåb 5, 8300 Odder (Kenn Ellebæk Knudsen) -
+                <md-button class="md-primary" ng-href="#" target="_blank">Vis projekt</md-button>
+            </div>
+        </div>
+        <h1 class="md-title">Du er blevet tildelt et nyt projekt</h1>
+        <div layout="row">
+            <div flex>
+                Vesterhåb 5, 8300 Odder (Kenn Ellebæk Knudsen) -
+                <md-button class="md-primary" ng-href="#" target="_blank">Vis projekt</md-button>
+            </div>
+        </div>
+        <md-toolbar class="md-table-toolbar md-default" ng-hide="working.show" aria-hidden="false" style="">
+            <div class="md-toolbar-tools">
+                <h1 class="md-title">Igangværende projekter</h1>
+                <div flex="" class="flex"></div>
+                <md-button class="md-icon-button" ng-click="working.show = true" aria-label="filter_list">
+                    <i class="material-icons">search</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-toolbar class="md-table-toolbar md-default ng-hide" ng-show="working.show" aria-hidden="true" style="">
+            <div class="md-toolbar-tools">
+                <md-icon class="material-icons">search</md-icon>
+                <form flex="" name="filter.form">
+                    <input type="text" ng-model="working.filter.search" placeholder="Søg" aria-invalid="false" style="width: 100%; margin: 0; border: none; color: rgba(0, 0, 0, 0.87);">
+                </form>
+                <md-button class="md-icon-button" ng-click="working.show = false; working.filter.search=undefined" aria-label="filter_list">
+                    <i class="material-icons">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div layout="row" layout-padding layout-wrap layout-fill>
+            <div flex="20" layout="column" ng-repeat="project in projectsWorking | filter: working.filter.search | orderBy : 'new'">
+                <md-card>
+                    <md-card-header>
+                        <md-card-avatar>
+                            <div style="background: #eee; height: 40px; width: 40px; border-radius: 50%;" layout="row" layout-align="center center">
+                                KK
+                            </div>
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">Ejer</span>
+                            <span class="md-subhead">{{ project.owner }}</span>
+                        </md-card-header-text>
+                        <div>
+                            <i class="material-icons" style="color: red;" ng-if="$index == 0">mail</i>
+                            <i class="material-icons" style="color: green;" ng-if="$index > 0">mail</i>
+                            <i class="material-icons" style="color: green;" ng-if="project.new">star</i>
+                        </div>
+                    </md-card-header>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{ project.address }}</span>
+                            <span class="md-headline">{{ project.zip }} {{ project.city}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="start center">
+                        <md-card-icon-actions></md-card-icon-actions>
+                        <md-button ng-click="endProject()">Afslut</md-button>
+                        <md-button ng-click="selectProject()" class="md-primary">Vælg</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+        <div layout="row">
+            <div flex="50">
+                <!--https://github.com/daniel-nagy/md-data-table-->
+                <md-toolbar class="md-table-toolbar md-default" ng-hide="filter.show" aria-hidden="false" style="">
+                    <div class="md-toolbar-tools">
+                        <h1 class="md-title">Afsluttede projekter</h1>
+                        <div flex="" class="flex"></div>
+                        <md-button class="md-icon-button" ng-click="filter.show = true" aria-label="filter_list">
+                            <i class="material-icons">search</i>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-toolbar class="md-table-toolbar md-default ng-hide" ng-show="filter.show" aria-hidden="true" style="">
+                    <div class="md-toolbar-tools">
+                        <md-icon class="material-icons">search</md-icon>
+                        <form flex="" name="filter.form">
+                            <input type="text" ng-model="query.filter.search" placeholder="Søg" aria-invalid="false" style="width: 100%; margin: 0; border: none; color: rgba(0, 0, 0, 0.87);">
+                        </form>
+                        <md-button class="md-icon-button" ng-click="filter.show = false; query.filter.search=undefined" aria-label="filter_list">
+                            <i class="material-icons">close</i>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <!-- exact table from live demo -->
+                <md-table-container>
+                    <table md-table multiple ng-model="selected"><!-- md-row-select  md-progress="promise"-->
+                        <thead md-head md-order="query.order"><!--md-on-reorder="getDesserts"-->
+                        <tr md-row>
+                            <th md-column><span>#</span></th><!-- md-numeric-->
+                            <th md-column md-order-by="address"><span>Adresse</span></th><!--md-numeric-->
+                            <th md-column md-order-by="owner">Ejer</th><!-- md-numeric -->
+                        </tr>
+                        </thead>
+                        <!-- -->
+                        <tbody md-body>
+                        <tr md-row md-select="project" md-select-id="name" md-auto-select ng-repeat="project in projectsEnded | filter: query.filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit track by $index"><!--Ended-->
+                            <td md-cell>{{ project.id }}</td>
+                            <td md-cell>{{ project.address }}, {{ project.zip }}, {{ project.city }}</td>
+                            <td md-cell>{{ project.owner }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+
+                <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{ countProjectsEnded() }}" md-page-select></md-table-pagination><!--md-on-paginate="getDesserts"-->
+            </div>
+            <div flex="50">
+                some
+            </div>
+        </div>
+    </md-content>
+</div>

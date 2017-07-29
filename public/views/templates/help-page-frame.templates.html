@@ -1,0 +1,23 @@
+<md-card style="box-shadow: none; border: 1px solid #ddd; background: #2f373e; color: #FFF; margin-top: 79px;"> <!--style="background-color: rgb(221, 221, 221)"-->
+    <md-card-title style="max-height: 135px;">
+        <md-card-title-text style="padding-top: 24px;">
+            <span class="md-headline" style="text-align: center; font-weight: 900; font-size: 55px;">Hjælp</span><!--color: #fff;-->
+            <!--<span class="md-subhead">Start med at vælg de rum som du vil renovere. Du vil herefter få en række uddybende spørsgmål til de valgt rum</span>-->
+        </md-card-title-text>
+        <md-card-title-media>
+            <div class="md-media-md card-media">
+                <i class="material-icons" style="font-size: 100px;">live_help</i>
+            </div>
+        </md-card-title-media>
+    </md-card-title>
+    <md-card-content>
+        <p ng-repeat="h in help" style="text-align: center; font-size: 20px; color: #FFF;"> {{ h.text }}</p><!-- color: #fff;-->
+    </md-card-content>
+    <!--<div style="padding-left: 30px; padding-right: 100px; background-color: lightgray;">
+        <md-whiteframe class="md-whiteframe-5dp" layout="column" layout-align="center center" style="padding: 10px;">
+        <div class="md-headline" flex style="text-align: center; margin-bottom: 25px;">Vejledning</div>
+        <div class="md-subhead" flex>{{ help }}</div>
+        <!--</md-whiteframe>
+    </div>-->
+</md-card>
+

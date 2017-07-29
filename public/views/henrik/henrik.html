@@ -1,0 +1,358 @@
+<style>
+    .green {
+        background-color: rgba(0, 128, 0, 0.40);
+    }
+    md-progress-circular.md-default-theme.md-hue-3.md-warn path, md-progress-circular.md-hue-3.md-warn path {
+        stroke: rgb(204, 219, 235);
+    }
+</style>
+
+<div layout="row" style="height: 100%">
+    <div flex="none" style="background: #2f373e; width: 250px;"><!--#0049b0-->
+        <a ui-sref="app.home">
+            <img src="https://www.lesivo.dk/img/content/logo_noBack_white.png" alt="Lesivo" style="width: 70%; margin-left: 15%; margin-top: 25px;">
+        </a>
+        <ul style="margin-top: 40px;">
+            <li style="padding-left: 15%; display: table; width: 100%; height: 45px;" ng-repeat="project in projects | filter: { ended: '!true' }" ng-click="changeState('app.rooms', { projectId: project._id } )">
+                <i class="material-icons" style="color: #FFF; font-size: 25px; margin-top: 8px; vertical-align: middle; display: table-cell;">home</i>
+                <span style="color: #36c6f4; vertical-align: middle; display: table-cell;"> {{ project.address.address }}</span>
+            </li>
+            <li style="height: 50px;"></li>
+            <li style="padding-left: 15%; display: table; width: 100%; height: 45px;" ng-click="newProject($event)" ng-controller="new-project">
+                <i class="material-icons" style="color: #FFF; font-size: 25px; margin-top: 8px; vertical-align: middle; display: table-cell;">add</i>
+                <span style="color: #36c6f4; vertical-align: middle; display: table-cell;">Nyt projekt</span>
+            </li>
+            <li style="padding-left: 15%; display: table; width: 100%; height: 45px;" ng-click="changeState('app.projects')" ng-if="user.validateUserRights(2)">
+                <i class="material-icons" style="color: #FFF; font-size: 25px; margin-top: 8px; vertical-align: middle; display: table-cell;">view_headline</i>
+                <span style="color: #36c6f4; vertical-align: middle; display: table-cell;">Igangværende sager</span>
+            </li>
+            <li style="padding-left: 15%; display: table; width: 100%; height: 45px;" ng-click="changeState('app.ended_projects')" ng-if="user.validateUserRights(2)">
+                <i class="material-icons" style="color: #FFF; font-size: 25px; margin-top: 8px; vertical-align: middle; display: table-cell;">archive</i>
+                <span style="color: #36c6f4; vertical-align: middle; display: table-cell;">Afsluttede sager</span>
+            </li>
+        </ul>
+        <div style="margin-top: 40px;" ng-if="user.validateUserRights(1)" ng-show="progress" ng-controller="progress-ctrl">
+            <h2 class="md-title" style="color: #FFF; text-align: center;">{{ Projects.getProject("address") }}</h2>
+            <div style="color: #FFF; padding-top: 5px; text-align: center;">Status</div>
+            <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 40px;">
+                <md-progress-circular class="md-warn md-hue-3" md-mode="determinate" value="{{ progress }}" md-diameter="150"></md-progress-circular>
+            </div>
+        </div>
+    </div>
+
+
+    <div flex layout="column">
+        <div flex="none" layout="row" layout-align="end center" style="height: 65px; background: #2f373e;">
+            <md-toolbar class="md-table-toolbar md-default" ng-hide="working.show" aria-hidden="false" style="">
+                <div class="md-toolbar-tools">
+                    <h1 class="md-title">{{ title }}</h1>
+                    <div flex="" class="flex"></div>
+                    <md-button class="md-icon-button" ng-click="working.show = true" aria-label="filter_list">
+                        <i class="material-icons">search</i>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-toolbar class="md-table-toolbar md-default ng-hide" ng-show="working.show" aria-hidden="true" style="">
+                <div class="md-toolbar-tools">
+                    <md-icon class="material-icons">search</md-icon>
+                    <form flex="" name="filter.form">
+                        <input type="text" ng-model="working.filter.search" placeholder="Søg" aria-invalid="false" style="width: 100%; margin: 0; border: none; color: rgba(0, 0, 0, 0.87);">
+                    </form>
+                    <md-button class="md-icon-button" ng-click="working.show = false; working.filter.search=undefined" aria-label="filter_list">
+                        <i class="material-icons">close</i>
+                    </md-button>
+                </div>
+            </md-toolbar>
+
+            <md-menu md-position-mode="target-right target" md-offset="0 60">
+                <md-button aria-label="Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)" style="height: 47px; width: 47px;">
+                    <i class="material-icons" style="color: #FFF; font-size: 35px;">account_circle</i>
+                </md-button>
+                <md-menu-content width="5">
+                    <md-menu-item style="height: 150px;">
+                        <div layout="row">
+                            <div flex="40">
+                                <div style="background-color: #0049b0; height: 100px; width: 100px; border-radius: 50%; font-size: 40px; color: #fff;" layout layout-align="center center">{{ user.getFirstName() + " " + user.getLastName() | initials }}</div>
+                            </div>
+                            <div flex flex="60">
+                                <div style="font-size: 13px; font-weight: bold; text-align: center;">{{ user.getFirstName() + " " + user.getLastName() }}</div>
+                                <div style="font-size: 13px; text-align: center;">{{ user.getEmail() }}</div>
+                                <div layout layout-align="center center">
+                                    <md-button ng-click="changeState('app.profile')">
+                                        Profil
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <div layout layout-align="center center">
+                            <md-button>
+                                Log ud
+                            </md-button>
+                        </div>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+        <div flex>
+            <div ui-view="henrik" style="background: #f5f5f5; height: 100%"></div>
+        </div>
+    </div>
+</div>
+
+<!--
+<div style="padding-top: 300px">
+    <h1>To do</h1>
+    - KAN VI SÆTTE PÅ HVOR LANGT MAN ER - BRUG DEN LÆNGSTE STIG SOM PEJLING
+</div>
+
+<form style="margin: 1000px;">
+    <!-- LEVEL 1
+    <div style="margin-top: 330px;">
+        <h3>Ønskes ændring af:</h3>
+        <md-list style="width: 300px;">
+            <md-list-item style="min-height: 0;" ng-repeat="item in items | orderBy : 'parent' track by $index">
+                <div ng-if="item.type">
+                    <p>{{ item.parent }} - {{ item.text }}</p>
+                    <div class="md-secondary">
+                        <md-switch ng-model="level1_1" aria-label="Level 1"></md-switch>
+                    </div>
+                </div>
+            </md-list-item>
+            <md-list-item ng-class="{'green' : level1 }" style="min-height: 0;">
+                <p>Andet</p>
+                <div class="md-secondary">
+                    <md-switch ng-model="level1_5" aria-label="Level 1"></md-switch>
+                </div>
+            </md-list-item>
+            <md-list-item style="min-height: 0;">
+                <md-input-container class="md-block" style="margin-top: 30px;" ng-show="level1_5">
+                    <label>Andet beskriv</label>
+                    <textarea ng-model="comment" md-maxlength="1000" rows="15" md-select-on-focus></textarea>
+                </md-input-container>
+            </md-list-item>
+        </md-list>
+    </div>
+
+    <!-- LEVEL 2
+    <div style="margin-top: 50px;">
+        <div layout="row">
+            <div flex="25">
+                <h3>Gulv</h3>
+                <h4 style="margin-top: 20px; margin-bottom: 20px;">
+                    Nuværende gulvtype
+                    <i class="material-icons" style="cursor: pointer;" ng-click="comment1=!comment1">comment</i>
+                    <md-button class="md-raised">Ved ikke</md-button>
+                </h4>
+                <md-radio-group ng-model="level2">
+                    <md-list style="width: 300px;">
+                        <md-list-item ng-class="{'green' : level1 }" style="min-height: 0;">
+                            <md-radio-button value="Trægulv">Trægulv</md-radio-button>
+                            <div class="md-secondary">
+                                <i class="material-icons" ng-click="showHelp=!showHelp; showImage=false">help</i>
+                                <i class="material-icons" ng-click="showHelp=false; showImage=!showImage">photo_camera</i>
+                            </div>
+                        </md-list-item>
+                        <md-list-item style="min-height: 0;">
+                            <div style="background-color: #eee;" ng-show="showHelp">
+                                Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard fyldtekst siden 1500-tallet, hvor en ukendt trykker sammensatte en tilfældig spalte for at trykke en bog til sammenligning af forskellige skrifttyper. Lorem Ipsum har ikke alene overlevet fem århundreder, men har også vundet indpas i elektronisk typografi uden væsentlige ændringer. Sætningen blev gjordt kendt i 1960'erne med lanceringen af Letraset-ark, som indeholdt afsnit med Lorem Ipsum, og senere med layoutprogrammer som Aldus PageMaker, som også indeholdt en udgave af Lorem Ipsum.
+                            </div>
+                            <img ng-src="../../images/background/kitchen.jpg" style="height: 195px !important;" ng-show="showImage">
+                        </md-list-item>
+                        <md-list-item ng-class="{'green' : level1 }" style="min-height: 0;">
+                            <md-radio-button value="Fliser">Fliser</md-radio-button>
+                            <div class="md-secondary">
+                                <i class="material-icons">help</i>
+                                <i class="material-icons">photo_camera</i>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-class="{'green' : level1 }" style="min-height: 0;">
+                            <md-radio-button value="Linolium">Linolium</md-radio-button>
+                            <div class="md-secondary">
+                                <i class="material-icons">help</i>
+                                <i class="material-icons">photo_camera</i>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-class="{'green' : level1 }" style="min-height: 0;">
+                            <md-radio-button value="Gulvtæppe">Gulvtæppe</md-radio-button>
+                            <div class="md-secondary">
+                                <i class="material-icons">help</i>
+                                <i class="material-icons">photo_camera</i>
+                            </div>
+                        </md-list-item>
+                        <md-list-item style="min-height: 0;">
+                            <md-radio-button value="Andet">Andet</md-radio-button>
+                            <div class="md-secondary" ng-show="level2=='Andet'">
+                                <input type="text">
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-radio-group>
+                <md-input-container class="md-block" style="margin-top: 30px;" ng-show="comment1">
+                    <label>Bemærkninger</label>
+                    <textarea ng-model="comment" md-maxlength="1000" rows="15" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+            <div flex="25" ng-show="level1_2">
+                <h3>Vægge</h3>
+                ...
+            </div>
+            <div flex="25" ng-show="level1_3">
+                <h3>Loft</h3>
+                ...
+            </div>
+            <div flex="25" ng-show="level1_4">
+                <h3>Vidnuer</h3>
+                ...
+            </div>
+        </div>
+    </div>
+
+    <!-- LEVEL 3
+    <div style="margin-top: 20px;" ng-show="level2">
+        <div layout="row">
+            <div flex="25" ng-show="level2">
+                <h4 style="margin-top: 20px; margin-bottom: 20px;">Handling</h4>
+                <md-radio-group ng-model="level3">
+                    <md-radio-button value="1">Udskiftning</md-radio-button>
+                    <md-radio-button value="2">Renovering</md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEVEL 4
+    <div style="margin-top: 20px;" ng-show="level2">
+        <div layout="row">
+            <div flex="25" ng-show="level3">
+                <div ng-show="level3 == '1'">
+                    <h4 style="margin-top: 20px; margin-bottom: 20px;">Ny gulvtype</h4>
+                    <md-radio-group ng-model="level4">
+                        <md-radio-button value="Trægulv">Trægulv</md-radio-button>
+                        <md-radio-button value="Fliser">Fliser</md-radio-button>
+                        <md-radio-button value="Linolium">Linolium</md-radio-button>
+                        <md-radio-button value="Gulvtæppe">Gulvtæppe</md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div ng-show="level3 == '2'">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEVEL 5
+    <div style="margin-top: 20px;" ng-show="level2">
+        <div layout="row">
+            <div flex="25" ng-show="level4">
+                <div>
+                    <h4 style="margin-top: 20px; margin-bottom: 20px;">Har I gulvvarme</h4>
+                    <div class="md-secondary">
+                        <md-switch ng-model="level5" aria-label="Level 1"></md-switch>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- LEVEL 6
+    <div style="margin-top: 20px;" ng-show="level2">
+        <div layout="row">
+            <div flex="25">
+                <div ng-show="level5===false">
+                    <h4 style="margin-top: 20px; margin-bottom: 20px;">Ønsker I gulvvarme</h4>
+                    <div class="md-secondary">
+                        <md-switch ng-model="level6" aria-label="Level 1"></md-switch>
+                    </div>
+                </div>
+                <div ng-show="level5===true">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEVEL 7
+    <div style="margin-top: 20px;" ng-show="level2">
+        <div layout="row">
+            <div flex="25">
+                <div ng-show="level6===false">
+                    NEJ
+                </div>
+                <div ng-show="level6===true">
+                    <md-list style="width: 300px;">
+                        <md-list-item ng-class="{'green' : level1 }" style="min-height: 0;">
+                            <p> Har I krybekælder?</p>
+                            <div class="md-secondary">
+                                <md-switch ng-model="level7_1" aria-label="Level 1"></md-switch>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-class="{'green' : level1 }" style="min-height: 0;">
+                            <p>Hvad ligger der under gulvet?</p>
+                            <div class="md-secondary">
+                                <md-radio-group ng-model="level7_2">
+                                    <md-radio-button value="træ">Træ</md-radio-button>
+                                    <md-radio-button value="Beton">Beton</md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-class="{'green' : level1 }" style="min-height: 0;">
+                            <p>Ønsker I at få flyttet et afløbsrist i gulvet</p>
+                            <div class="md-secondary">
+                                <md-switch ng-model="level7_3" aria-label="Level 1"></md-switch>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ARBEJDSSEDDEL
+    <div style="margin-top: 100px;">
+        <h1>
+            Arbejdsbeskrivelse
+        </h1>
+        <h3 ng-show="level1_1" style="margin-top: 30px;">Gulv</h3>
+        <md-list style="width: 500px;">
+            <md-list-item style="min-height: 0;">
+                <p style="width: 70px;">MU</p>
+                <p class="md-secondary" style="width: 200px;">Nuværende gulv</p>
+                <p class="md-secondary" style="width: 230px;">{{ level2 }}</p>
+            </md-list-item>
+            <md-list-item style="min-height: 0;" ng-show="level3 == 1">
+                <p style="width: 70px;">MU</p>
+                <p class="md-secondary" style="width: 200px;">Fremtidigt gulv</p>
+                <p class="md-secondary" style="width: 230px;">{{ level4 }}</p>
+            </md-list-item>
+            <md-list-item style="min-height: 0;">
+                <p style="width: 70px;">MU</p>
+                <p class="md-secondary" style="width: 200px;">Handling</p>
+                <p class="md-secondary" ng-show="level3 == 1" style="width: 230px;">Udskiftning</p>
+                <p class="md-secondary" ng-show="level3 == 2" style="width: 230px;">Renovering</p>
+            </md-list-item>
+            <md-subheader class="md-no-sticky">Varme</md-subheader>
+            <md-list-item style="min-height: 0;">
+                <p style="width: 70px;">MU</p>
+                <p class="md-secondary" style="width: 200px;">Har gulvvarme</p>
+                <p class="md-secondary" style="width: 230px;">{{ level5 === false ? "Nej" : "Ja" }}</p>
+            </md-list-item>
+            <md-list-item style="min-height: 0;">
+                <p style="width: 70px;">MU</p>
+                <p class="md-secondary" style="width: 200px;">Ønsker gulvvarme</p>
+                <p class="md-secondary" style="width: 230px;">{{ level6 === false ? "Nej" : "Ja" }}</p>
+            </md-list-item>
+        </md-list>
+        <h3 ng-show="level1_2" style="margin-top: 60px;">Vægge</h3>
+
+
+        <md-divider></md-divider>
+        MU: Murer
+        TØ: Tømrer
+    </div>
+    Opret træ
+</form>

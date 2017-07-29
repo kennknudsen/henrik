@@ -1,0 +1,44 @@
+<div layout="column" ng-show="item.type == 'list'">
+    <style>
+        .added {
+            background-color: #b1efe0;
+        }
+    </style>
+    <div flex>
+        <div flex="100" layout="row" layout-padding layout-wrap layout-fill ng-if="value === true">
+            <div flex-gt-md="50" layout layout-align="start start" style="max-width: 300px;" ng-repeat="action in items | HenrikGetItem : true track by $index" ng-init="action.value=true"><!--ng-show="action.type == 'boolean'"-->
+                <action-remove action="action" item="item" handle-response="booleanResponse"></action-remove>
+                <!--
+                <md-card style="width: 100%;" ng-class="{ added: action.value }">
+                    <md-card-title style="padding: 5px;">
+                        <md-card-title-text style="margin: 8px; padding-top: 4px;">
+                            <span class="md-headline">{{ action.text }}</span>
+                        </md-card-title-text>
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button class="md-raised" ng-class="{ 'md-primary' : !action.value, 'md-warn' : action.value }" ng-click="action.value = !action.value; booleanResponse( item, action )">
+                                <span>{{ action.value === true ? 'Fjern' : 'Tilføj' }}</span>
+                            </md-button>
+                        </md-card-actions>
+                    </md-card-title>
+                </md-card>
+                -->
+            </div>
+
+            <div flex-gt-md="100"  ng-show="otherShow">
+                <other></other>
+            </div>
+        </div>
+        <div flex="100" layout="row" layout-padding layout-wrap layout-fill ng-if="value === false">
+            <div flex-gt-md="50" layout layout-align="start start" style="max-width: 300px;" ng-repeat="action in items | HenrikGetItem : false track by $index" ng-init="action.value=false"><!--ng-show="action.type == 'boolean'"-->
+                <action-add action="action" item=item handle-response="booleanResponse"></action-add>
+            </div>
+        </div>
+    </div>
+    <div flex ng-if="value === false">
+        <md-input-container class="md-block" style="margin-left: 30px;">
+            <md-checkbox class="md-primary" name="tos" ng-click="$parent.$parent.otherShow = !$parent.$parent.otherShow" style="font-size: 25px; padding-top: 6px;">
+                Foretag renovering af andre bygningselementer
+            </md-checkbox>
+        </md-input-container>
+    </div>
+</div>

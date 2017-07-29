@@ -1,0 +1,88 @@
+<md-dialog aria-label="Nyt projekt">
+    <form name="newProjectForm" ng-cloak>
+        <md-toolbar style="background-color: #0049b0;">
+            <div class="md-toolbar-tools">
+                <h2 style="color: white;">{{ header.title }}</h2>
+                <span flex  style="color: white;">{{ header.subtitle }}</span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="material-icons" aria-label="Close dialog" style="color: #FFF; font-size: 25px; margin-top: 8px; vertical-align: middle; display: table-cell;">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <div flex="50" layout="column" ng-hide="searchSentTo" style="padding-rigth: 10px;">
+                        <input-title ></input-title>
+                        <input-address></input-address>
+                        <input-description></input-description>
+                    </div>
+                    <help-page flex="50" layout="column" help="help" ng-hide="searchSentTo"></help-page>
+                    <div flex="50" layout="column" ng-show="searchSentTo" style="min-height:200px; padding-left: 10px;">
+                        <md-autocomplete
+                            required
+                            md-input-name="searchSentTo"
+                            md-input-maxlength="60"
+                            md-min-length="0"
+                            md-no-asterisk
+                            ng-disabled="isDisabled"
+                            md-floating-label="Søg efter en håndværker"
+                            md-no-cache="noCache"
+                            md-selected-item="selectedItem"
+                            md-search-text-change="searchTextChange(searchText)"
+                            md-search-text="searchText"
+                            md-selected-item-change="selectedItemChange(item)"
+                            md-items="item in querySearch(searchText)"
+                            md-item-text="item.display"
+                            <md-item-template>
+                                <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                <!--No states matching "{{searchText}}" were found.  -->
+                                <a ng-click="newState(searchText)">Opret ny!</a>
+                            </md-not-found>
+                            <div ng-messages="newProjectForm.searchSentTo.$error" ng-if="newProjectForm.searchSentTo.$touched">
+                                <div ng-message="required">Feltet skal udfyldes</div>
+                                <div ng-message="maxlength">Din søgning skal være kortere end 60 tegn</div>
+                            </div>
+                        </md-autocomplete>
+
+                    </div>
+                    <div flex="50" layout="column" ng-show="searchSentTo" style="padding-left: 50px; padding-right: 50px;">
+                        <div style="font-weight: 900">Dit projekt sendes til: </div>
+                        <table>
+                            <tbady>
+                                <tr ng-repeat="to in project.sentTo">
+                                    <td>
+                                        {{ to.display }}
+                                    </td>
+                                    <td>
+                                        <i class="material-icons" style="font-size: 20px; color: rgb(221,44,0); cursor: pointer; padding-left: 20px;" ng-click="removeSentTo( to )">delete</i>
+                                    </td>
+                                </tr>
+                            </tbady>
+                        </table>
+                        <div ng-show="isDisabled " style="margin-top: 50px">Hvis du vil sende til flere en 3 håndværkere - opgrader dit abonnement</div>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">
+                Annuller
+            </md-button>
+            <md-button class="md-raised md-primary" type="button" ng-click="searchSentTo = true"
+                       ng-show="( project.title.value && project.address.address.value && project.address.zip.value && project.address.city.value && project.description.value ) && !searchSentTo">
+                FORTSÆT
+            </md-button><!--ng-click="setFocus('title');"-->
+            <md-button ng-show="searchSentTo" ng-click="searchSentTo = false">
+                Tilbage
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="save('useful')" ng-show="!searchSentTo">
+                Gem
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

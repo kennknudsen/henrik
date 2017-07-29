@@ -1,0 +1,6 @@
+<div layout="column" flex ng-init="showImages=false" style="margin-top: 10px;" ng-show="radio.images.length > 0">
+    <h5 flex>Billeder ( {{ radio.images.length }} ) - <a style="cursor: pointer;" ng-click="showImages = !showImages">vis</a></h5>
+    <div layout="row" layout-wrap layout-fill ng-cloak ng-show="showImages" style="position: relative; left: -10px;">
+        <img ng-src="../../images/background/{{ img }}" layout-padding style="max-height: 100px !important;" ng-repeat="img in radio.images track by $index" flex-gt-md="33" >
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div flex layout="column">
+    <style>
+        .added {
+            background-color: #b1efe0;
+        }
+    </style>
+    <md-content class="md-padding" layout="column" style="background: #f5f5f5;">
+        <h1>Alle spørgsmål vedrørende dit project er besvaret</h1>
+        <h3>Vælg de håndværkere du skal have tilbud fra</h3>
+        <div layout="row" layout-padding layout-wrap layout-fill ng-cloak>
+            <md-card flex="33" style="max-width: 300px; padding: 0;" ng-repeat="to in sentTo" ng-class="{ added: added }" ng-init="added = true">
+                <md-card-header>
+                    <md-card-avatar>
+                        <div style="background: #eee; height: 40px; width: 40px; border-radius: 50%;" layout="row" layout-align="center center" class="ng-binding layout-align-center-center layout-row">
+                            {{ to | initials }}
+                        </div>
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span class="md-title">{{ to }}</span>
+                        <span class="md-subhead">NAVN HVIS VI HAR DET FRA LISTE - ellers bare email</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-card-actions layout="row" layout-align="start center" style="margin: 0;" class="layout-align-start-center layout-row">
+                    <md-button class="md-primary md-button md-ink-ripple" ng-click="added = !added"
+                               style="width: 100%; background: rgb(47, 55, 62); padding-top: 8px; padding-bottom: 8px; color: #FFF; font-weight: 900;">
+                        <span>{{ added === true ? "Fjern" : "Tilføj" }}</span>
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+            <md-button class="md-raised md-primary" ng-if="queue.length == currentState" ng-disabled="saving" ui-sref="app.sent()"
+                       style="margin: 20px; font-size: 25px;  padding: 10px 30px;">
+                <span>Send til håndværker</span>
+            </md-button>
+    </md-content>
+</div>

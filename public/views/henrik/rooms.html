@@ -1,0 +1,33 @@
+<style>
+    .added {
+        background-color: #b1efe0;
+    }
+</style>
+<div flex layout="column"><!-- style="height: 100%;"-->
+    <md-content class="md-padding" layout="column" style="background: #f5f5f5;">
+        <div flex style="background: #FFF; margin: 30px;">
+            <div ng-show="( rooms | filter: { value : true } ).length > 0" style="border: 1px solid #ddd;">
+                <div flex="100"><!-- ng-show="( rooms | filter: { value : true } ).length > 0"-->
+                    <h3 class="md-title" style="margin-left: 30px; margin-top: 20px; text-align: center;">Valgte rum</h3>
+                </div>
+                <div layout="row" layout-padding layout-wrap layout-fill>
+                    <div flex-gt-md="25" layout layout-align="start start" ng-repeat="room in rooms | filter : { value : true } track by $index">
+                        <action-remove action="room" handle-response="handleResponse"></action-remove>
+                    </div>
+                </div>
+                <navigation></navigation>
+            </div>
+        </div>
+        <div flex layout="row" style="margin: 25px;">
+            <div flex="70" style="margin-top: 30px;">
+                <div flex="100" layout="row" layout-padding layout-wrap layout-fill>
+                    <title></title>
+                    <div flex-gt-md="33" layout layout-align="start start" ng-repeat="room in rooms | filter : { value : '!true' } track by $index">
+                        <action-add action="room" handle-response="handleResponse"></action-add>
+                    </div>
+                </div>
+            </div>
+            <help-page-frame flex="25" flex-offset="5" help="help"></help-page-frame>
+        </div>
+    </md-content>
+</div>

@@ -1,0 +1,44 @@
+<div layout="column" ng-controller="homeCtrl">
+    <div layout="row" flex="100" layout-align="center center" style="margin-bottom: 75px;">
+        <h1>Kom godt igang</h1>
+    </div>
+    <div layout="row" flex="100">
+        <div flex="50" layout="row" layout-align="end center">
+            <div style="height: 200px; width: 200px; border: 5px solid #0049b0; border-radius: 50%; color: #0049b0; font-size: 100px; margin-right: 50px;" layout="row" layout-align="center center" ng-show="projects.length > 0">
+                <i class="material-icons" aria-label="Close dialog" style="color: #0049b0; font-size: 100px;">check</i>
+            </div>
+            <div style="height: 200px; width: 200px; background-color: #0049b0; border-radius: 50%; color: #FFF; font-size: 100px; margin-right: 50px;" layout="row" layout-align="center center" ng-show="projects.length == 0">
+                <span>1</span>
+            </div>
+        </div>
+        <div flex="50" layout="row" layout-align="start center">
+            <span style="color: #0049b0; font-size: 50px;">Opret dit første<br>projekt</span>
+        </div>
+    </div>
+    <div layout="row" flex="100" style="margin-top: 50px;">
+        <div flex="50" layout="row" layout-align="end center">
+            <div style="height: 200px; width: 200px; border: 5px solid #0049b0; border-radius: 50%; color: #0049b0; font-size: 100px; margin-right: 50px;" layout="row" layout-align="center center" ng-show="projects_started">
+                <i class="material-icons" aria-label="Close dialog" style="color: #0049b0; font-size: 100px;">check</i>
+            </div>
+            <div style="height: 200px; width: 200px; background-color: #0049b0; border-radius: 50%; color: #FFF; font-size: 100px; margin-right: 50px;" layout="row" layout-align="center center" ng-show="!projects_started">
+                <span>2</span>
+            </div>
+        </div>
+        <div flex="50" layout="row" layout-align="start center">
+            <span style="color: #0049b0; font-size: 50px;">Svar på spørgsmål<br>om dit projekt</span>
+        </div>
+    </div>
+    <div layout="row" flex="100" style="margin-top: 50px;">
+        <div flex="50" layout="row" layout-align="end center">
+            <div style="height: 200px; width: 200px; border: 5px solid #0049b0; border-radius: 50%; color: #0049b0; font-size: 100px; margin-right: 50px;" layout="row" layout-align="center center" ng-show="projects_sent">
+                <i class="material-icons" aria-label="Close dialog" style="color: #0049b0; font-size: 100px;">check</i>
+            </div>
+            <div style="height: 200px; width: 200px; background-color: #0049b0; border-radius: 50%; color: #FFF; font-size: 100px; margin-right: 50px;" layout="row" layout-align="center center" ng-show="!projects_sent">
+                <span>3</span>
+            </div>
+        </div>
+        <div flex="50" layout="row" layout-align="start center">
+            <span style="color: #0049b0; font-size: 50px;">Send projektet til<br>dine håndværkere</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<md-input-container class="md-block">
+    <label>Beskriv dit projekt</label>
+    <textarea name="description" ng-model="project.description.value" rows="5" md-select-on-focus md-maxlength="550" required md-no-asterisk ng-focus="setFocus('description');"></textarea>
+    <div ng-messages="newProjectForm.description.$error">
+        <div ng-message="required">Feltet skal udfyldes</div>
+        <div ng-message="md-maxlength">Beskrivelsen skal være kortere end 550 tegn</div>
+    </div>
+</md-input-container>

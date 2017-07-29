@@ -1,0 +1,55 @@
+<div layout="column" ng-show="item.type == 'radioGroup'">
+    <style>
+        md-list-item::before {
+            min-height: 0;
+        }
+    </style>
+
+    <div flex="100" layout="row" layout-padding layout-wrap layout-fill ng-if="value === true">
+        <div flex-gt-md="50" layout layout-align="start start" style="max-width: 400px;" ng-repeat="radio in items | HenrikGetItem : true track by $index" ng-init="radio.value=true">
+            <md-card style="width: 100%;" ng-class="{ added: radio.value === true }">
+                <md-card-title style="padding: 5px;">
+                    <md-card-title-text style="margin: 8px; padding-top: 4px;">
+                        <span class="md-headline">{{ radio.text.option }}</span>
+                    </md-card-title-text>
+                    <actions></actions>
+                </md-card-title>
+                <md-card-content style="min-height: 56px;">
+                    <!--
+                    <help-response></help-response>
+                    <add-file></add-file>
+                    <add-image></add-image>
+                    -->
+                    <files></files>
+                    <images></images>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-raised md-primary" ng-disabled="radio.value === true" ng-click="radioResponse( item, radio )">
+                        <span>Vælg</span>
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        <div flex >
+            <md-radio-group>
+                <div ng-show="$parent.radioModel === 999999999">
+                    <other></other>
+                </div>
+            </md-radio-group>
+        </div>
+    </div>
+
+    <div flex="100" layout="row" layout-padding layout-wrap layout-fill ng-if="value === false">
+        <div flex-gt-md="50" layout layout-align="start start" style="max-width: 400px;" ng-repeat="radio in items | HenrikGetItem : false track by $index" ng-init="radio.value=false">
+            <action-select action="radio" item=item handle-response="radioResponse"></action-select>
+        </div>
+        <div flex>
+            <md-radio-group>
+                <md-input-container class="md-block" style="margin-left: 30px;">
+                    <md-radio-button ng-value="999999999" style="font-size: 25px; padding-top: 6px; margin-bottom: 0;">Andet</md-radio-button>
+                </md-input-container>
+            </md-radio-group>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,8 @@
+<md-input-container class="md-block" flex-gt-sm="">
+    <label>Overskift</label>
+    <input name="title" ng-model="project.title.value" md-maxlength="60" required md-no-asterisk ng-focus="setFocus('title');">
+    <div ng-messages="newProjectForm.title.$error">
+        <div ng-message="required">Feltet skal udfyldes</div>
+        <div ng-message="md-maxlength">Titlen skal være kortere end 60 tegn</div>
+    </div>
+</md-input-container>

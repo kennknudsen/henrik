@@ -1,0 +1,45 @@
+<style>
+    .green {
+        background-color: rgba(0, 128, 0, 0.40);
+    }
+</style>
+
+
+<div flex layout="column">
+    <md-content class="md-padding" layout="column" style="background: #f5f5f5;">
+        <div flex style="background: #FFF; margin: 30px;" ng-show="responses.length > 0">
+            <div style="border: 1px solid #ddd;"><!-- ng-show="( items | filter: { value : true } ).length > 0"-->
+                <div layout="row" layout-padding layout-wrap layout-fill>
+                    <div flex-gt-md="100" ng-repeat="item in items | filter: { id: itemId } : true | orderBy : 'parent' track by $index"><!-- denne er jo 2 gange - vi kan vel nøjes med 1 -->
+                        <title selected></title>
+                        <responses-boolean ng-cloak true></responses-boolean>
+                        <responses-radio ng-cloak true></responses-radio>
+                    </div>
+                </div>
+                <navigation></navigation>
+            </div>
+        </div>
+        <div flex layout="row" style="margin: 25px;">
+            <div flex="70">
+                <md-card-content>
+                    <div layout="row" ng-repeat="item in items | filter: { id: itemId } : true | orderBy : 'parent' track by $index"><!-- denne er jo 2 gange - vi kan vel nøjes med 1 -->
+                        <div flex="100">
+                            <form>
+                                <div>
+                                    <title nonselected></title>
+                                    <responses-boolean ng-cloak></responses-boolean>
+                                    <responses-radio ng-cloak></responses-radio>
+                                    <!--<responses-other></responses-other>-->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </md-card-content>
+            </div>
+            <help-page-frame flex="30" help="help"></help-page-frame>
+        </div>
+    </md-content>
+</div>
+
+
+<!--<navigation></navigation>-->
