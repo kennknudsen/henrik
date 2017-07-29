@@ -20,6 +20,7 @@ var itemsSchema = mongoose.Schema({
     id: Number,
     text: TextSchema,
     type: String,
+    room: [],
     parent: [],                           //SKAL VI LIGE LAVE OM TIL OBJECT
     grandParent: [],                      //SKAL VI LIGE LAVE OM TIL OBJECT
     section: Boolean,

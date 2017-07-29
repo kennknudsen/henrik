@@ -1,9 +1,9 @@
 <div>
-    <div ng-repeat="item1 in items | inParent : parent" style="padding-left: 20px;" ng-init="showOptions=false">
-        Spørgsmål: {{ item1.id }} - {{ item1.text.title }} - G:{{ item1.grandParent }} - P:{{ item1.parent }} - <a ng-click="showOptions = !showOptions" style="cursor:pointer; color: red;">VIS OPTIONS</a>
-        <div ng-repeat="item2 in items | inParent : item1.id : room  " style="padding-left: 20px;" ng-show="showOptions">
-            Option: {{ item2.id }} - {{ item2.text.option }} - G:{{ item2.grandParent }} - P:{{ item2.parent }}
-            <build-tree parent="item2.id" room="room" items="items"></build-tree>
+    <div ng-repeat="item1 in items | inParent : parent : room : grandParent" style="padding-left: 20px;" ng-init="showOptions=false">
+        Spørgsmål: {{ item1.id }} - {{ item1.text.title }} - P:{{ item1.parent }} - G:{{ item1.grandParent }} - <a ng-click="showOptions = !showOptions" style="cursor:pointer; color: red;">VIS OPTIONS</a>
+        <div ng-repeat="item2 in items | inParent : item1.id : room : grandParent" style="padding-left: 20px;" ng-show="showOptions">
+            Option: {{ item2.id }} - {{ item2.text.option }} - P:{{ item2.parent }} - G:{{ item2.grandParent }} - R:{{ item2.room }}
+            <build-tree parent="item2.id" grand-parent="item1.id" room="room" items="items"></build-tree>
         </div>
     </div>
 </div>

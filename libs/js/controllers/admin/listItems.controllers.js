@@ -15,12 +15,35 @@ app.controller('adminListItems', ['$scope', 'rooms', 'Items', function( $scope, 
 }]);
 
 app.filter('inParent', ['$filter', function( $filter ){
-    return function( items, parentId, roomID ){
+    return function( items, parentId, roomID, grandParentID ){
+        console.log("HER 1", parentId, roomID, grandParentID);
+
         return $filter("filter")( items, function( item ){
             if( item.room.length > 0 ){
-                return item.parent.indexOf( parentId ) != -1 && _.includes( item.room, roomID );
+
+                if( item.parent.indexOf( parentId ) != -1 && _.includes( item.room, roomID ) ) {
+                    // FUNCTION
+                    if( item.grandParent.length > 0 ){
+                        console.log("HER")
+                        return _.includes( item.grandParent, grandParentID );
+                    }else{
+                        return true;
+                    }
+                }else{
+                    return false;
+                }
             }else{
-                return item.parent.indexOf( parentId ) != -1;
+                if( item.parent.indexOf( parentId ) != -1 ) {
+                    // FUNCTION
+                    if( item.grandParent.length > 0 ){
+                        //console.log("HER 1", item.grandParent, parentId, roomID, grandParentID);
+                        return _.includes( item.grandParent, grandParentID );
+                    }else{
+                        return true;
+                    }
+                }else{
+                    return false;
+                }
             }
         });
     };
@@ -33,6 +56,7 @@ app.directive('buildTree', function() {
         templateUrl: '../views/admin/buildTree.html',
         scope: {
             parent: "=parent",
+            grandParent: "=grandParent",
             room: "=room",
             items: "=items"
         }
