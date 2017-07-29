@@ -36,5 +36,20 @@
     "pug": "^2.0.0-rc.2",
     "serve-favicon": "~2.4.3",
     "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.6.5",
+    "frisby": "^2.0.1",
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-jasmine-node": "^1.0.7",
+    "gulp-jshint": "^2.0.4",
+    "jasmine-core": "^2.7.0",
+    "jasmine-node": "^1.14.5",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0"
   }
 }
