@@ -7,9 +7,17 @@ var async = require('async');
 var path = require('path');
 var appDir = path.dirname(require.main.filename);
 var env = process.env.NODE_ENV || 'development';
+
+console.log("VI ER HER")
+
 if(env == "production"){
+    console.log("VI ER HER 2")
+    console.log(appDir)
     appDir = appDir + "/repo";
+    console.log(appDir)
 }
+
+console.log("VI ER HER 3")
 
 var Items_DB = require( path.join( appDir, '../models/db/items.db' ) );
 
