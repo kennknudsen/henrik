@@ -15,10 +15,10 @@ app.controller('adminListItems', ['$scope', 'rooms', 'Items', function( $scope, 
 }]);
 
 app.filter('inParent', ['$filter', function( $filter ){
-    return function( items, parentId, grandParentID ){
+    return function( items, parentId, roomID ){
         return $filter("filter")( items, function( item ){
-            if( item.grandParent.length > 0 ){
-                return item.parent.indexOf( parentId ) != -1 && _.includes( item.grandParent, grandParentID );
+            if( item.room.length > 0 ){
+                return item.parent.indexOf( parentId ) != -1 && _.includes( item.room, roomID );
             }else{
                 return item.parent.indexOf( parentId ) != -1;
             }
