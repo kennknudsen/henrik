@@ -6,10 +6,6 @@ var async = require('async');
 
 var path = require('path');
 var appDir = path.dirname(require.main.filename);
-var env = process.env.NODE_ENV || 'development';
-if(env == "production"){
-    appDir = appDir + "/repo";
-}
 
 var Projects_DB = require( path.join( appDir, '../models/db/projects.db' ) );
 
