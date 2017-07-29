@@ -45,7 +45,8 @@ app.use(express.static(path.join(__dirname, 'public')));
  * JS BUNDLE
  */
 app.use('/js/bundle.js', browserify('./libs/js/bundle.js', {
-    insertGlobals: true
+    insertGlobals: true,
+    minify: false
 }));
 
 /***************************
