@@ -1,6 +1,6 @@
 <div>
     <div ng-repeat="item1 in items | inParent : parent" style="padding-left: 20px;">
-        {{ room }}Spørgsmål: {{ item1.id }} - {{ item1.text.title }} - G:{{ item1.grandParent }} - P:{{ item1.parent }}
+        Spørgsmål: {{ item1.id }} - {{ item1.text.title }} - G:{{ item1.grandParent }} - P:{{ item1.parent }}
         <div ng-repeat="item2 in items | inParent : item1.id : room  " style="padding-left: 20px;">
             Option: {{ item2.id }} - {{ item2.text.option }} - G:{{ item2.grandParent }} - P:{{ item2.parent }}
             <build-tree parent="item2.id" room="room" items="items"></build-tree>
