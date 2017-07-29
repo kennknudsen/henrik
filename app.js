@@ -1,3 +1,4 @@
+//https://github.com/openshift/nodejs-ex/blob/master/package.json
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
