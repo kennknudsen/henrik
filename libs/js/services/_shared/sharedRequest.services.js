@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory( 'sharedRequest', function( API, $http, $httpParamSerializer, $location ) {
+app.factory( 'sharedRequest', [ 'API', '$http', '$httpParamSerializer', '$location', function( API, $http, $httpParamSerializer, $location ) {
 
     var factory = {};
 
@@ -30,4 +30,4 @@ app.factory( 'sharedRequest', function( API, $http, $httpParamSerializer, $locat
     };
 
     return factory;
-});
+}]);

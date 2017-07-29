@@ -1,6 +1,6 @@
 'use strict';
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config([ '$stateProvider', '$urlRouterProvider', function ( $stateProvider, $urlRouterProvider ) {
 
     $urlRouterProvider.otherwise('/');
     $stateProvider
@@ -182,4 +182,4 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
 
     })
-});
+}]);
