@@ -9,7 +9,8 @@
     <div>Max ID: {{ id_max }}</div>
     <div ng-repeat="room in rooms" style="margin-top: 50px;">
         <b>Rum: {{ room.id }} - {{ room.title }}</b>
-        <build-tree parent="room.id"  items="items"></build-tree>
+        {{ room.id }}
+        <build-tree parent="room.id" room="room.id" items="items"></build-tree>
     </div>
 </div>
 
