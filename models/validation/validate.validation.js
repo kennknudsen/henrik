@@ -6,8 +6,6 @@ var schema_address = require("./schema/address.schema.validation");
 var schema_zip = require("./schema/zip.schema.validation");
 var schema_city = require("./schema/city.schema.validation");
 var schema_response = require("./schema/response.schema.validation");
-//var schema_name = require("./schema/name.schema.validation");
-//var schema_email = require("./schema/email.schema.validation");
 
 var validate = {
     PROJECT_ID: function( req, res, next ) {

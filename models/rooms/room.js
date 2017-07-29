@@ -2,14 +2,8 @@
 
 var path = require('path');
 var appDir = path.dirname(require.main.filename);
-var env = process.env.NODE_ENV || 'development';
-if(env == "production"){
-    appDir = appDir + "/repo";
-}
 
-var Global = require( path.join( appDir, '../models/global/global' ) );
 var Rooms_DB = require( path.join( appDir, '../models/db/rooms.db' ) );
-
 
 var Room = function() {
 

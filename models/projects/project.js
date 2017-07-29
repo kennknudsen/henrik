@@ -5,10 +5,6 @@ var _ = require('lodash');
 
 var path = require('path');
 var appDir = path.dirname(require.main.filename);
-var env = process.env.NODE_ENV || 'development';
-if(env == "production"){
-    appDir = appDir + "/repo";
-}
 
 var Input = require( path.join( appDir, '../models/global/input' ) );
 var Global = require( path.join( appDir, '../models/global/global' ) );

@@ -4,10 +4,7 @@ var async = require( 'async' );
 
 var path = require('path');
 var appDir = path.dirname(require.main.filename);
-var env = process.env.NODE_ENV || 'development';
-if(env == "production"){
-    appDir = appDir + "/repo";
-}
+
 var validate = require( path.join( appDir, '../models/validation/validate.validation' ) );
 var validate_Response = require( path.join( appDir, '../models/validation/response.validation' ) );
 

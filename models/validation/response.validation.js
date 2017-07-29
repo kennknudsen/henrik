@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require("lodash");
-//var logger = require('./../logging/logging');
 
 var validationResponse = {
     JSON: function (req, res, next) {
