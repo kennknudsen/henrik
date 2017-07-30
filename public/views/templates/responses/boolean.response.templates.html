@@ -3,25 +3,38 @@
         .added {
             background-color: #b1efe0;
         }
+
+        button:first-of-type {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        button:last-of-type {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+
+        button.boolean {
+            background: rgba(47, 55, 62, 0.7) !important;
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
+            margin: 0 !important;
+        }
+
+        button.boolean.added {
+            background: #b1efe0 !important;
+            color: #2f373e !important;
+        }
+
+        button.boolean.added span {
+            font-weight: 900;
+        }
+
     </style>
     <div flex>
         <div flex="100" layout="row" layout-padding layout-wrap layout-fill ng-if="value === true">
             <div flex-gt-md="50" layout layout-align="start start" style="max-width: 300px;" ng-repeat="action in items | HenrikGetItem : true track by $index" ng-init="action.value=true"><!--ng-show="action.type == 'boolean'"-->
                 <action-remove action="action" item="item" handle-response="booleanResponse"></action-remove>
-                <!--
-                <md-card style="width: 100%;" ng-class="{ added: action.value }">
-                    <md-card-title style="padding: 5px;">
-                        <md-card-title-text style="margin: 8px; padding-top: 4px;">
-                            <span class="md-headline">{{ action.text }}</span>
-                        </md-card-title-text>
-                        <md-card-actions layout="row" layout-align="end center">
-                            <md-button class="md-raised" ng-class="{ 'md-primary' : !action.value, 'md-warn' : action.value }" ng-click="action.value = !action.value; booleanResponse( item, action )">
-                                <span>{{ action.value === true ? 'Fjern' : 'Tilføj' }}</span>
-                            </md-button>
-                        </md-card-actions>
-                    </md-card-title>
-                </md-card>
-                -->
             </div>
 
             <div flex-gt-md="100"  ng-show="otherShow">
@@ -31,6 +44,26 @@
         <div flex="100" layout="row" layout-padding layout-wrap layout-fill ng-if="value === false">
             <div flex-gt-md="50" layout layout-align="start start" style="max-width: 300px;" ng-repeat="action in items | HenrikGetItem : false track by $index" ng-init="action.value=false"><!--ng-show="action.type == 'boolean'"-->
                 <action-add action="action" item=item handle-response="booleanResponse"></action-add>
+            </div>
+        </div>
+        <div flex="100" layout="row" layout-padding layout-wrap layout-fill ng-if="value === false">
+            <div flex-gt-md="50" layout layout-align="start start" ng-repeat="action in items | HenrikGetItem : false track by $index" ng-init="action.value=false"><!--ng-show="action.type == 'boolean'"-->
+
+                <md-card style="width: 100%;">
+                    <md-card-title style="padding: 0;">
+                        <md-card-title-text style="margin: 8px; padding-top: 4px;">
+                            <span class="md-headline" ng-if="action.text">{{ action.text.question }}</span>
+                        </md-card-title-text>
+                        <md-card-actions layout="row" layout-align="end center" style="margin: 0;">
+                            <md-button class="md-raised md-primary boolean" ng-class="{ added: action.value }" ng-click="action.value = !action.value; handleResponse( action.id )"">
+                                <span>Ja</span>
+                            </md-button>
+                            <md-button class="md-raised md-primary boolean" ng-class="{ added: !action.value }" ng-click="action.value = !action.value; handleResponse( action.id )">
+                                <span>Nej</span>
+                            </md-button>
+                        </md-card-actions>
+                    </md-card-title>
+                </md-card>
             </div>
         </div>
     </div>
