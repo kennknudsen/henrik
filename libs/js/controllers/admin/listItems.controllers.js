@@ -18,6 +18,7 @@ app.filter('inParent', ['$filter', function( $filter ){
     return function( items, parentId, roomID, grandParentID ){
         console.log("HER 1", parentId, roomID, grandParentID);
 
+
         return $filter("filter")( items, function( item ){
             if( item.room.length > 0 ){
 
